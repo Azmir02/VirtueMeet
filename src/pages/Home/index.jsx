@@ -66,7 +66,7 @@ const HomePage = () => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
-        className="w-full h-screen bg-red-500"
+        className="w-full h-screen relative"
       >
         <div className="text-right pt-5 pr-5">
           <button
@@ -76,7 +76,7 @@ const HomePage = () => {
             Log Out
           </button>
         </div>
-        <div className="flex items-center justify-center w-full h-full">
+        <div className="flex items-center justify-center w-full absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
           <div className=" w-[80%] lg:w-[70%] xl:w-[60%] 2xl:w-[40%] rounded-md bg-white bg-opacity-20 p-4 backdrop-blur-md shadow-lg">
             <div className="w-[20%] mx-auto rounded-full overflow-hidden">
               <img
