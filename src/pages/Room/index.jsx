@@ -15,28 +15,32 @@ const RoomPage = () => {
       const serverSecret = import.meta.env.VITE_APP_SERVERSECRET;
 
       if (appID && serverSecret) {
-        const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
-          appID,
-          serverSecret,
-          roomId,
-          user.uid,
-          user.displayName
-        );
-        const zc = ZegoUIKitPrebuilt.create(kitToken);
+        try {
+          const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
+            appID,
+            serverSecret,
+            roomId,
+            user.uid,
+            user.displayName
+          );
+          const zc = ZegoUIKitPrebuilt.create(kitToken);
 
-        zc.joinRoom({
-          container: meetingContainer.current,
-          sharedLinks: [
-            {
-              name: "Copy Link",
-              url: `${import.meta.env.VITE_BASE_URL}/room/${roomId}`,
+          zc.joinRoom({
+            container: meetingContainer.current,
+            sharedLinks: [
+              {
+                name: "Copy Link",
+                url: `${import.meta.env.VITE_BASE_URL}/room/${roomId}`,
+              },
+            ],
+            scenario: {
+              mode: ZegoUIKitPrebuilt.OneONoneCall,
             },
-          ],
-          scenario: {
-            mode: ZegoUIKitPrebuilt.OneONoneCall,
-          },
-          showScreenSharingButton: true,
-        });
+            showScreenSharingButton: true,
+          });
+        } catch (error) {
+          console.error("Error joining room with Zego: ", error);
+        }
       } else {
         console.error("AppID or ServerSecret is missing.");
       }

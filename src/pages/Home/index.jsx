@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import { LogeOutUser } from "../../features/Slices/LoginSlice";
@@ -10,6 +10,33 @@ const HomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const auth = getAuth();
+
+  // Function to generate a room name like 'xft-acpn-yim'
+  const generateRoomName = () => {
+    const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+    // Function to generate a random segment of specified length
+    const getRandomSegment = (length) => {
+      let segment = "";
+      for (let i = 0; i < length; i++) {
+        const randomChar = characters.charAt(
+          Math.floor(Math.random() * characters.length)
+        );
+        segment += randomChar;
+      }
+      return segment;
+    };
+
+    // Generate three segments: first (3 chars), middle (4 chars), last (3 chars)
+    return `${getRandomSegment(3)}-${getRandomSegment(4)}-${getRandomSegment(
+      3
+    )}`;
+  };
+
+  // Automatically set room name when the component mounts
+  useEffect(() => {
+    setValue(generateRoomName());
+  }, []);
 
   const handleJoinRoom = useCallback(() => {
     navigate(`/room/${value}`);
@@ -39,7 +66,7 @@ const HomePage = () => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
-        className="w-full  min-h-screen lg:h-screen bg-red-500"
+        className="w-full min-h-screen lg:h-screen bg-red-500"
       >
         <div className="text-right pt-5 pr-5">
           <button
