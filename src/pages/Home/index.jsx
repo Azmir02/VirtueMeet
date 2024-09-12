@@ -66,7 +66,7 @@ const HomePage = () => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
-        className="w-full min-h-screen lg:h-screen bg-red-500"
+        className="w-full h-screen bg-red-500"
       >
         <div className="text-right pt-5 pr-5">
           <button
@@ -77,24 +77,24 @@ const HomePage = () => {
           </button>
         </div>
         <div className="flex items-center justify-center w-full h-full">
-          <div className="w-[40%] rounded-md bg-white bg-opacity-20 p-4 backdrop-blur-md shadow-lg">
+          <div className=" w-[80%] lg:w-[70%] xl:w-[60%] 2xl:w-[40%] rounded-md bg-white bg-opacity-20 p-4 backdrop-blur-md shadow-lg">
             <div className="w-[20%] mx-auto rounded-full overflow-hidden">
               <img
                 src="/images/callavatar.webp"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-2/3 flex items-center justify-between mx-auto mt-5">
+            <div className="w-2/3 2xl:w-[90%] 4xl:w-2/3 md:flex items-center justify-between mx-auto mt-5">
               <input
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 placeholder="Enter Room Name"
-                className="bg-transparent text-white font-sans border border-white placeholder:text-white outline-none w-[75%] rounded-md px-3 py-4"
+                className="bg-transparent text-white font-sans border border-white placeholder:text-white outline-none w-full md:w-[70%] lg:w-[75%] rounded-md px-3 py-4"
               />
               <button
                 onClick={handleJoinRoom}
                 disabled={!value}
-                className="px-5 py-4 bg-blue-400 rounded-md font-sans text-white font-semibold"
+                className="px-5 py-3 mt-3 md:mt-0 md:py-4 w-full md:w-auto bg-blue-400 rounded-md font-sans text-white font-semibold"
               >
                 Join Now
               </button>
